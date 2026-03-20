@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MB Salón | Hair & Spa by Miguel Ángel González - CABA</title>
+<meta name="description" content="Peluquería & Spa premium en el centro de Buenos Aires. Cortes, color, peinados, maquillaje y más. Tacuarí 259, CABA. Tel: 011 4334-1432. Espacio inclusivo y amigable con LGBTQ+.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0c0c0c;
+    --black2: #141414;
+    --black3: #1c1c1c;
+    --gold: #c8a45a;
+    --gold-light: #e0c07a;
+    --gold-pale: rgba(200,164,90,0.1);
+    --rose: #d4788a;
+    --rose-pale: rgba(212,120,138,0.12);
+    --white: #faf8f5;
+    --white-dim: rgba(250,248,245,0.65);
+    --white-faint: rgba(250,248,245,0.08);
+    --gray: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; color: var(--white); background: var(--black); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 60px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(12,12,12,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(200,164,90,0.1);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .nav-logo-main {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .btn-nav {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-nav:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    padding-top: 74px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(12,12,12,0.95) 45%, rgba(12,12,12,0.4) 80%, rgba(12,12,12,0.7)),
+      url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=80') center/cover no-repeat;
+  }
+
+  /* Diagonal gold line */
+  .hero-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    opacity: 0.15;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    max-width: 680px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero-title-italic {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.45s forwards;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--white-dim);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 36px;
+    max-width: 420px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.75s forwards;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    padding: 14px 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,164,90,0.4);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 30px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(250,248,245,0.25);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-badges {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .hero-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--white-dim);
+    font-weight: 300;
+  }
+
+  .hero-badge-item span { color: var(--gold); font-size: 1rem; }
+
+  .hero-rating-float {
+    position: absolute;
+    bottom: 60px; right: 60px;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .rating-big { font-family: 'Bodoni Moda', serif; font-size: 5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .rating-stars { color: var(--gold); font-size: 1rem; letter-spacing: 4px; margin: 4px 0; }
+  .rating-count { font-size: 0.75rem; color: var(--white-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ─── SERVICIOS ─── */
+  #servicios {
+    background: var(--black2);
+    padding: 100px 60px;
+    border-top: 1px solid rgba(200,164,90,0.12);
+  }
+
+  .servicios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .serv-card {
+    background: var(--black3);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .serv-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s;
+  }
+
+  .serv-card:hover { background: #222; }
+  .serv-card:hover::after { width: 100%; }
+
+  .serv-emoji { font-size: 2rem; margin-bottom: 18px; display: block; }
+
+  .serv-name {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .serv-desc { font-size: 0.84rem; color: var(--white-dim); line-height: 1.65; font-weight: 300; }
+
+  /* ─── SOBRE NOSOTROS ─── */
+  #nosotros {
+    background: var(--black);
+    padding: 100px 60px;
+  }
+
+  .nosotros-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .nosotros-img-wrap {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+
+  .nosotros-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.4s;
+  }
+
+  .nosotros-img-wrap:hover img { filter: grayscale(0%); }
+
+  .nosotros-img-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(12,12,12,0.8), transparent);
+  }
+
+  .nosotros-img-badge {
+    position: absolute;
+    bottom: 28px; right: -16px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 18px 22px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(200,164,90,0.3);
+  }
+
+  .nosotros-img-badge .years {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .nosotros-img-badge .years-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .nosotros-content p {
+    font-size: 0.95rem;
+    color: var(--white-dim);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+
+  .nosotros-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .pillar {
+    border: 1px solid rgba(200,164,90,0.2);
+    padding: 18px 20px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .pillar:hover { border-color: var(--gold); background: var(--gold-pale); }
+
+  .pillar-icon { font-size: 1.2rem; margin-bottom: 8px; }
+
+  .pillar-name { font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+
+  .pillar-desc { font-size: 0.78rem; color: var(--white-dim); font-weight: 300; line-height: 1.5; }
+
+  /* ─── GALERÍA ─── */
+  #galeria {
+    background: var(--black2);
+    padding: 100px 60px;
+    border-top: 1px solid rgba(200,164,90,0.08);
+  }
+
+  .galeria-header { text-align: center; margin-bottom: 50px; }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 220px 220px;
+    gap: 8px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .gal-item {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gal-item:first-child { grid-column: 1 / 3; }
+  .gal-item:nth-child(5) { grid-column: 3 / 5; }
+
+  .gal-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s, filter 0.3s;
+    filter: grayscale(30%);
+  }
+
+  .gal-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
+
+  .gal-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(12,12,12,0.5), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gal-item:hover .gal-overlay { opacity: 1; }
+
+  /* ─── RESEÑAS ─── */
+  #resenas {
+    background: var(--black);
+    padding: 100px 60px;
+  }
+
+  .resenas-top {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .rating-showcase {
+    flex-shrink: 0;
+    text-align: center;
+    background: var(--black3);
+    padding: 32px 40px;
+    border: 1px solid rgba(200,164,90,0.2);
+  }
+
+  .rating-huge {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .rating-s { color: var(--gold); font-size: 1.1rem; letter-spacing: 4px; margin: 6px 0; }
+  .rating-n { font-size: 0.75rem; color: var(--white-dim); letter-spacing: 0.1em; }
+
+  .resenas-intro .section-title { margin-bottom: 14px; }
+  .resenas-intro p { font-size: 0.95rem; color: var(--white-dim); font-weight: 300; line-height: 1.7; max-width: 420px; }
+
+  .resenas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .resena-card {
+    background: var(--black3);
+    padding: 32px;
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .resena-card:hover { border-color: var(--gold); background: #1e1e1e; }
+
+  .resena-q { font-family: 'Bodoni Moda', serif; font-size: 3rem; color: var(--gold); line-height: 0.8; margin-bottom: 14px; opacity: 0.6; }
+
+  .resena-text {
+    font-size: 0.9rem;
+    color: var(--white-dim);
+    line-height: 1.7;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .resena-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 8px; }
+  .resena-author { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+  .resena-date { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+
+  /* ─── FAQ ─── */
+  #faq {
+    background: var(--black2);
+    padding: 100px 60px;
+    border-top: 1px solid rgba(200,164,90,0.08);
+  }
+
+  .faq-header { text-align: center; margin-bottom: 50px; }
+
+  .faq-list {
+    max-width: 740px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    background: var(--black3);
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s;
+    overflow: hidden;
+  }
+
+  .faq-item.open { border-color: var(--gold); }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--white);
+    text-align: left;
+    gap: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .faq-q svg { flex-shrink: 0; transition: transform 0.3s; color: var(--gold); }
+  .faq-item.open .faq-q svg { transform: rotate(180deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s;
+    font-size: 0.86rem;
+    color: var(--white-dim);
+    line-height: 1.75;
+    padding: 0 28px;
+    font-weight: 300;
+  }
+
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 28px 20px; }
+
+  /* ─── CTA FINAL ─── */
+  #cta-final {
+    background: var(--black);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta-final::before {
+    content: 'MB';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(10rem, 30vw, 24rem);
+    font-weight: 700;
+    color: rgba(200,164,90,0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+
+  #cta-final h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  #cta-final h2 em { font-style: italic; color: var(--gold); }
+
+  #cta-final p {
+    color: var(--white-dim);
+    font-size: 1rem;
+    margin-bottom: 48px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #070707;
+    padding: 60px 60px 28px;
+    border-top: 1px solid rgba(200,164,90,0.1);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo-main {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .footer-logo-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .footer-desc { font-size: 0.83rem; color: var(--white-dim); line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+
+  .footer-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: rgba(250,248,245,0.55);
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .footer-info-item svg { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+
+  .footer-col-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-links a {
+    color: rgba(250,248,245,0.5);
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ─── INCLUSIVITY BADGE ─── */
+  .inclusive-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white-dim);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    margin-top: 16px;
+    width: fit-content;
+  }
+
+  /* ─── WHATSAPP ─── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 500;
+    background: #25D366;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    animation: pulse-wa 2.5s infinite;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+
+  .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* ─── ANIMACIONES ─── */
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 50px 24px 60px; }
+    .hero-rating-float { display: none; }
+    #servicios, #nosotros, #galeria, #resenas, #faq, #cta-final { padding: 70px 20px; }
+    .servicios-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .nosotros-inner { grid-template-columns: 1fr; gap: 40px; }
+    .nosotros-img-badge { right: 10px; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gal-item:first-child, .gal-item:nth-child(5) { grid-column: auto; }
+    .resenas-top { flex-direction: column; gap: 30px; }
+    .resenas-grid { grid-template-columns: 1fr; gap: 12px; }
+    .footer-top { grid-template-columns: 1fr; gap: 30px; }
+    footer { padding: 40px 20px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="nav-logo-main">MB Salón</span>
+    <span class="nav-logo-sub">Hair & Spa · by Miguel Ángel González</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://wa.me/5491143341432?text=Hola! Quiero reservar un turno en MB Salón" class="btn-nav" target="_blank">Reservar turno</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Hair & Spa · San Telmo, CABA</div>
+    <h1 class="hero-title">MB Salón</h1>
+    <span class="hero-title-italic">by Miguel Ángel González</span>
+    <p class="hero-desc">Peluquería y spa premium en el corazón de Buenos Aires. Cortes, color, peinados, maquillaje y tratamientos capilares. Un espacio donde cada persona brilla.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5491143341432?text=Hola! Quiero reservar un turno" class="btn-gold" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.06 23.03c-.111.383.245.74.628.629l5.24-1.473A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.852-.582-5.42-1.585l-.387-.243-4.016 1.128 1.13-4.013-.252-.398A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Reservar turno
+      </a>
+      <a href="tel:01143341432" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Llamar
+      </a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge-item"><span>📍</span> Tacuarí 259, San Telmo</div>
+      <div class="hero-badge-item"><span>🕐</span> Lun–Vie 8–19 · Sáb 10–18</div>
+      <div class="hero-badge-item"><span>🌈</span> Espacio LGBTQ+ friendly</div>
+    </div>
+  </div>
+
+  <div class="hero-rating-float">
+    <div class="rating-big">4.7</div>
+    <div class="rating-stars">★★★★★</div>
+    <div class="rating-count">437 reseñas en Google</div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-header">
+    <div>
+      <p class="section-tag reveal">Lo que hacemos</p>
+      <h2 class="section-title reveal d1">Nuestros <em>servicios</em></h2>
+    </div>
+    <a href="https://wa.me/5491143341432?text=Hola! Quiero consultar precios" class="btn-gold reveal d2" target="_blank" style="white-space:nowrap;font-size:0.8rem;padding:12px 24px;">Consultar precios</a>
+  </div>
+
+  <div class="servicios-grid">
+    <div class="serv-card reveal">
+      <span class="serv-emoji">✂️</span>
+      <div class="serv-name">Corte & Styling</div>
+      <div class="serv-desc">Cortes modernos y clásicos para todos los estilos. Lavado, corte y secado con las últimas técnicas.</div>
+    </div>
+    <div class="serv-card reveal d1">
+      <span class="serv-emoji">🎨</span>
+      <div class="serv-name">Color & Mechas</div>
+      <div class="serv-desc">Coloración, balayage, mechas, rayitos y corrección de color. Técnicas actuales para resultados impactantes.</div>
+    </div>
+    <div class="serv-card reveal d2">
+      <span class="serv-emoji">💇‍♀️</span>
+      <div class="serv-name">Peinados</div>
+      <div class="serv-desc">Peinados para eventos, casamientos, graduaciones y ocasiones especiales. Te hacemos lucir increíble.</div>
+    </div>
+    <div class="serv-card reveal d1">
+      <span class="serv-emoji">💄</span>
+      <div class="serv-name">Maquillaje</div>
+      <div class="serv-desc">Maquillaje social y artístico para todo tipo de eventos. Natural o glamoroso según tu estilo.</div>
+    </div>
+    <div class="serv-card reveal d2">
+      <span class="serv-emoji">✨</span>
+      <div class="serv-name">Tratamientos Capilares</div>
+      <div class="serv-desc">Hidratación, keratina, botox capilar y tratamientos reconstructores para el cabello que soñás.</div>
+    </div>
+    <div class="serv-card reveal d3">
+      <span class="serv-emoji">🧖</span>
+      <div class="serv-name">Spa & Bienestar</div>
+      <div class="serv-desc">Tratamientos de spa para relajarte y renovarte. El cuidado completo que merecés.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="nosotros-inner">
+    <div class="nosotros-img-wrap reveal">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="MB Salón interior">
+      <div class="nosotros-img-overlay"></div>
+      <div class="nosotros-img-badge">
+        <span class="years">15+</span>
+        <span class="years-label">Años de experiencia</span>
+      </div>
+    </div>
+
+    <div class="nosotros-content">
+      <p class="section-tag reveal">Sobre nosotros</p>
+      <h2 class="section-title reveal d1">Dinámica, <em>pasión</em><br>y excelencia</h2>
+      <div style="margin-top:24px;">
+        <p class="reveal d2">MB Salón nació de la pasión de Miguel Ángel González por el arte del cabello y la belleza. Un espacio atendido por sus propios dueños, donde cada cliente recibe atención personalizada y genuina.</p>
+        <p class="reveal d2">Somos un salón inclusivo y amigable con la comunidad LGBTQ+. Creemos que la belleza no tiene género y que cada persona merece sentirse cómoda, vista y valorada.</p>
+        <p class="reveal d3">Más que conforme con cada servicio es nuestro estándar. Excelente atención, buenos precios y siempre pendientes de que salgas feliz.</p>
+      </div>
+
+      <div class="nosotros-pillars reveal d3">
+        <div class="pillar">
+          <div class="pillar-icon">💫</div>
+          <div class="pillar-name">Atención personalizada</div>
+          <div class="pillar-desc">Cada cliente tiene su propio tiempo y atención.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🌈</div>
+          <div class="pillar-name">Espacio inclusivo</div>
+          <div class="pillar-desc">LGBTQ+ friendly. Todos son bienvenidos.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">💰</div>
+          <div class="pillar-name">Buenos precios</div>
+          <div class="pillar-desc">Calidad premium a precios accesibles.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">⚡</div>
+          <div class="pillar-name">Dinámico y eficiente</div>
+          <div class="pillar-desc">Pendientes de un excelente servicio siempre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="galeria-header">
+    <p class="section-tag reveal" style="justify-content:center;">Nuestro trabajo</p>
+    <h2 class="section-title reveal d1" style="text-align:center;">Galería</h2>
+  </div>
+
+  <div class="galeria-grid">
+    <div class="gal-item reveal">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Peinado">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal d1">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="Corte">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal d2">
+      <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" alt="Color">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal d1">
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" alt="Tratamiento">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal d2">
+      <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80" alt="Salón">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal d3">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100d791?w=400&q=80" alt="Maquillaje">
+      <div class="gal-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="resenas">
+  <div class="resenas-top">
+    <div class="rating-showcase reveal">
+      <div class="rating-huge">4.7</div>
+      <div class="rating-s">★★★★★</div>
+      <div class="rating-n">437 reseñas en Google</div>
+    </div>
+    <div class="resenas-intro">
+      <p class="section-tag reveal">Opiniones reales</p>
+      <h2 class="section-title reveal d1">Lo que dicen<br>nuestros <em>clientes</em></h2>
+      <p class="reveal d2" style="margin-top:14px;">Cada reseña es una historia de alguien que salió sintiéndose mejor. Eso es lo que nos motiva a dar siempre lo mejor.</p>
+    </div>
+  </div>
+
+  <div class="resenas-grid">
+    <div class="resena-card reveal">
+      <div class="resena-q">"</div>
+      <p class="resena-text">Excelente atención, buenos precios, atendido por sus propios dueños. Un lugar donde te sentís especial desde que entrás.</p>
+      <div class="resena-stars">★★★★★</div>
+      <div class="resena-author">Cliente verificada</div>
+      <div class="resena-date">Google · 5 estrellas</div>
+    </div>
+    <div class="resena-card reveal d1">
+      <div class="resena-q">"</div>
+      <p class="resena-text">Es muy dinámico y está pendiente de un excelente servicio. Más que conforme con el peinado y maquillaje, me sentí muy cómoda.</p>
+      <div class="resena-stars">★★★★★</div>
+      <div class="resena-author">Cliente verificada</div>
+      <div class="resena-date">Google · 5 estrellas</div>
+    </div>
+    <div class="resena-card reveal d2">
+      <div class="resena-q">"</div>
+      <p class="resena-text">Más que conforme con el peinado y maquillaje. Me sentí muy cómoda. Un ambiente cálido y profesional donde todos son bienvenidos.</p>
+      <div class="resena-stars">★★★★★</div>
+      <div class="resena-author">Cliente verificada</div>
+      <div class="resena-date">Google · 5 estrellas</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-header">
+    <p class="section-tag reveal" style="justify-content:center;">Dudas frecuentes</p>
+    <h2 class="section-title reveal d1" style="text-align:center;">Preguntas <em>frecuentes</em></h2>
+  </div>
+
+  <div class="faq-list reveal d2">
+    <div class="faq-item">
+      <button class="faq-q">¿Necesito turno previo?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Recomendamos reservar turno por WhatsApp para garantizar tu horario. También atendemos sin turno según disponibilidad.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Atienden a hombres y mujeres?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Sí, atendemos a todas las personas sin distinción. Somos un espacio inclusivo y LGBTQ+ friendly donde todos son bienvenidos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Hacen trabajos para eventos y casamientos?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Sí, realizamos peinados y maquillaje para bodas, graduaciones, quinceañeros y todo tipo de eventos. Consultanos con anticipación.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Cuáles son los horarios?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Lunes a viernes de 8:00 a 19:00 hs. Sábados de 10:00 a 18:00 hs. Domingos cerrado.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Dónde están ubicados?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Estamos en Tacuarí 259, Ciudad Autónoma de Buenos Aires, en el barrio de San Telmo/Monserrat.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Qué medios de pago aceptan?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Aceptamos efectivo, transferencia bancaria y tarjetas de débito y crédito. Consultanos por promociones.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <h2 class="reveal">¿Listo para tu<br><em>próxima visita</em>?</h2>
+  <p class="reveal d1">Reservá tu turno ahora y viví la experiencia MB Salón. Buenos precios, excelente atención y un espacio donde todos son bienvenidos.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/5491143341432?text=Hola! Quiero reservar un turno en MB Salón" class="btn-gold reveal d2" target="_blank">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.06 23.03c-.111.383.245.74.628.629l5.24-1.473A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.852-.582-5.42-1.585l-.387-.243-4.016 1.128 1.13-4.013-.252-.398A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <a href="tel:01143341432" class="btn-ghost reveal d3">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      011 4334-1432
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-main">MB Salón</div>
+      <div class="footer-logo-sub">Hair & Spa · by Miguel Ángel González</div>
+      <p class="footer-desc">Peluquería y spa premium en el centro de Buenos Aires. Cortes, color, peinados, maquillaje y tratamientos capilares para todos.</p>
+      <div class="footer-info-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Tacuarí 259, CABA
+      </div>
+      <div class="footer-info-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        011 4334-1432
+      </div>
+      <div class="footer-info-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lun–Vie 8:00–19:00 · Sáb 10:00–18:00
+      </div>
+      <div class="inclusive-badge">🌈 Espacio LGBTQ+ friendly</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Servicios</div>
+      <ul class="footer-links">
+        <li><a href="#">Corte & Styling</a></li>
+        <li><a href="#">Color & Mechas</a></li>
+        <li><a href="#">Peinados</a></li>
+        <li><a href="#">Maquillaje</a></li>
+        <li><a href="#">Tratamientos Capilares</a></li>
+        <li><a href="#">Spa & Bienestar</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Info</div>
+      <ul class="footer-links">
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="https://wa.me/5491143341432" target="_blank">Reservar turno</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 MB Salón · Hair & Spa by Miguel Ángel González · Tacuarí 259, CABA</div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5491143341432?text=Hola! Quiero reservar un turno en MB Salón" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.06 23.03c-.111.383.245.74.628.629l5.24-1.473A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.852-.582-5.42-1.585l-.387-.243-4.016 1.128 1.13-4.013-.252-.398A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+
+  ['serv-card','resena-card'].forEach(cls => {
+    document.querySelectorAll('.' + cls).forEach((el, i) => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) setTimeout(() => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease, background 0.3s, border-color 0.3s';
+          }, i * 80);
+        });
+      }, { threshold: 0.1 }).observe(el);
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
